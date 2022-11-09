@@ -5,12 +5,18 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
 import * as Styles from './Styles';
+import api from "../../services/api";
 
 const Signup = () => {
   const [passwdConfirmation, setPasswdConfirmation] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+
+  const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
+    setUsername(e.currentTarget.value);
+  }
 
   const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
@@ -24,20 +30,33 @@ const Signup = () => {
     setPasswdConfirmation(e.currentTarget.value);
   }
 
-  const handleSignup = () => {
-    if (!email || !password || !passwdConfirmation) {
-      setError("Fill in all fields.");
-      return;
-    } else if (password !== passwdConfirmation) {
-      setError("Passwords don't match.");
-      return;
-    }
+  const handleSignup = async () => {
+    if (password.length < 6) setError('The password must be at least 6 characters long.')
+    if (username.length < 3) setError('The user must be at least 3 characters long.')
+    if (password != passwdConfirmation) setError("Passwords don't match")
+
+    const response = await api.post('http://localhost:3005/api/signup', {
+      username: username,
+      email: email,
+      password: password,
+    }).then(res => {
+      console.log(res)
+    });
+
+    return response;
   }
 
   return (
     <Styles.Container>
 
       <Styles.Content>
+
+        <Input
+          type='text'
+          placeholder="Enter your username"
+          value={username}
+          onChange={handleUsername}
+        />
 
         <Input
           type='email'
