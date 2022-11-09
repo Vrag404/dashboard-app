@@ -5,11 +5,14 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 
 import * as Styles from './Styles';
+import api from '../../services/api';
 
 const Signin = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
@@ -19,11 +22,22 @@ const Signin = () => {
     setPassword(e.currentTarget.value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
       setError('Fill in all selected fields.');
       return;
     }
+
+    const response = await api.post('http://localhost:3005/api/signin', {
+      email: email,
+      password: password,
+    }).then(res => {
+      localStorage.setItem('auth-token', res.data.token);
+    });
+
+    navigate('/home')
+
+    return response;
   };
 
   return (
