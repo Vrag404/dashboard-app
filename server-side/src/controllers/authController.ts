@@ -10,7 +10,6 @@ dotenv.config();
 const tokenSecret: string = (process.env.TOKEN_SECRET as string);
 
 export const signup = async (req: Request, res: Response) => {
-    // Tratamento de erro
     const { error } = signupValidation(req.body);
 
     if (error) {
@@ -23,7 +22,6 @@ export const signup = async (req: Request, res: Response) => {
         return res.status(401).json('Email already exists');
     }
 
-    // Criando e salvando um novo usuario
     try {
         const newUser: IUser = new User({
             username: req.body.username,
