@@ -1,26 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 
+import * as AuthService from '../../services/auth.service';
+import { AuthContext } from '../../contexts/authContext';
+
 import * as Styles from './Styles';
-import api from '../../services/api';
 
 const Signin = () => {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const { email, password, handleEmail, handlePassword, error, setError } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
-  const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -28,21 +20,19 @@ const Signin = () => {
       return;
     }
 
-    const response = await api.post('http://localhost:3005/api/signin', {
-      email: email,
-      password: password,
-    }).then(res => {
-      localStorage.setItem('auth-token', res.data.token);
-    });
-
-    navigate('/home')
-
-    return response;
+    return await AuthService.signin({ email, password })
+      .then(
+        () => {
+          navigate('/home')
+        }
+      ).catch(() => 
+        setError('Invalid email or password.')
+      )
   };
 
   return (
     <Styles.Container>
-      
+
       <Styles.Content>
         <Input
           type="email"
@@ -70,7 +60,7 @@ const Signin = () => {
           </Styles.Strong>
 
         </Styles.LabelSignup>
-        
+
       </Styles.Content>
     </Styles.Container>
   );

@@ -1,49 +1,45 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
+import * as AuthService from "../../services/auth.service";
+import { AuthContext } from "../../contexts/authContext";
+
 import * as Styles from './Styles';
-import api from "../../services/api";
 
 const Signup = () => {
-  const [passwdConfirmation, setPasswdConfirmation] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const { 
+    handleUsername, handleEmail, handlePassword, handlePasswdConfirmation,
+    password, username, passwdConfirmation, email, error, setError
+  } = useContext(AuthContext);
 
-  const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  }
-
-  const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  }
-
-  const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  }
-
-  const handlePasswdConfirmation = (e: React.FormEvent<HTMLInputElement>) => {
-    setPasswdConfirmation(e.currentTarget.value);
-  }
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
-    if (password.length < 6) setError('The password must be at least 6 characters long.')
-    if (username.length < 3) setError('The user must be at least 3 characters long.')
-    if (password != passwdConfirmation) setError("Passwords don't match")
+    if (!username || !email || !password || !passwdConfirmation) {
+      setError('Fill in all selected fields.'); 
+    }
 
-    const response = await api.post('http://localhost:3005/api/signup', {
-      username: username,
-      email: email,
-      password: password,
-    }).then(res => {
-      console.log(res)
-    });
+    if (password.length < 6) {
+      setError('The password must be at least 6 characters long.')
+    }
 
-    return response;
+    if (username.length < 3) {
+      setError('The user must be at least 3 characters long.')
+    }
+    
+    if (password != passwdConfirmation) {
+      setError("Passwords don't match")
+    }
+
+    return await AuthService.signup({ username, email, password })
+      .then(
+        () => {
+          navigate('/')
+        }
+      );
   }
 
   return (
