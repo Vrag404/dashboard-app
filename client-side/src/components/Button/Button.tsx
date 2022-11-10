@@ -1,11 +1,6 @@
-import { MouseEventHandler } from "react";
+import { IButton } from "../../types/components.interfaces";
 
 import { StyledButton } from "./Styles";
-
-interface IButton {
-    text: string,
-    onClick: MouseEventHandler<HTMLButtonElement> | undefined,
-}
 
 const Button = ({ text, onClick }: IButton) => {
   return (

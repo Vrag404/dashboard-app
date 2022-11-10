@@ -1,13 +1,6 @@
-import React, { ChangeEventHandler } from "react";
+import { IInput } from "../../types/components.interfaces";
 
 import { StyledInput } from "./Styles";
-
-interface IInput {
-    type: string,
-    placeholder: string,
-    value: string | number | undefined,
-    onChange: ChangeEventHandler<HTMLInputElement>
-}
 
 const Input = ({ type, placeholder, value, onChange }: IInput) => {
   return (
