@@ -61,9 +61,7 @@ export const signin = async (req: Request, res: Response) => {
     if (!correctPassword) {
         return res.status(401).json('Invalid password');
     }
-
-    // Create a token
-
+    
     const token: string = jwt.sign({ _id: user._id }, tokenSecret);
 
     res.header('auth-token', token).json({ user: user, token: token });
