@@ -1,6 +1,6 @@
 import { IButton } from "../../types/components.interfaces";
 
-import { StyledButton } from "./Styles";
+import { StyledButton } from "./styles/button.styled";
 
 const Button = ({ text, onClick }: IButton) => {
   return (

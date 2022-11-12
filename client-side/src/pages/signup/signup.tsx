@@ -1,19 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
 
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import Button from "../../components/button/button.component";
+import Input from "../../components/input/input.component";
+
+import useAuth from "../../hooks/useAuth";
 
 import * as AuthService from "../../services/auth.service";
-import { AuthContext } from "../../contexts/authContext";
-
-import * as Styles from './Styles';
+import * as Styles from './styles/signup.styled';
 
 const Signup = () => {
   const { 
     handleUsername, handleEmail, handlePassword, handlePasswdConfirmation,
     password, username, passwdConfirmation, email, error, setError
-  } = useContext(AuthContext);
+  } = useAuth();
 
   const navigate = useNavigate();
 

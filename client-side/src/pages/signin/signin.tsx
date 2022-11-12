@@ -1,16 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
 
-import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
+import Button from '../../components/button/button.component';
+import Input from '../../components/input/input.component';
+
+import useAuth from '../../hooks/useAuth';
 
 import * as AuthService from '../../services/auth.service';
-import { AuthContext } from '../../contexts/authContext';
-
-import * as Styles from './Styles';
+import * as Styles from './styles/signin.styled';
 
 const Signin = () => {
-  const { email, password, handleEmail, handlePassword, error, setError } = useContext(AuthContext);
+  const { email, password, handleEmail, handlePassword, error, setError } = useAuth();
 
   const navigate = useNavigate();
 

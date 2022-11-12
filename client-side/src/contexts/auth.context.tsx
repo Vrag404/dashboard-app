@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import { IAuthContextProps, IAuthContextTypes } from '../types/auth.interfaces';
 import { isValidEmail } from '../utils/emailValidate';
@@ -7,6 +7,7 @@ export const AuthContext = createContext<IAuthContextTypes>({} as IAuthContextTy
 
 export const AuthProvider = ({ children }: IAuthContextProps) => {
   const [passwdConfirmation, setPasswdConfirmation] = useState('');
+  const [signed, setSigned] = useState(false);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -34,15 +35,19 @@ export const AuthProvider = ({ children }: IAuthContextProps) => {
     setPasswdConfirmation(event.currentTarget.value);
   }
 
+  const checkLocalToken = () => {
+    const hasToken = localStorage.getItem('auth-token');
+
+    if (hasToken) setSigned(true); 
+  }
+
+  const provide: IAuthContextTypes = { handleUsername, handleEmail, handlePassword, 
+    handlePasswdConfirmation, password, email, username, passwdConfirmation, 
+    error, setError
+  }
+
   return (
-    <AuthContext.Provider value=
-      {
-        {
-          handleUsername, handleEmail, handlePassword, handlePasswdConfirmation,
-          password, email, username, passwdConfirmation, error, setError
-        }
-      }
-    >
+    <AuthContext.Provider value={provide}>
       {children}
     </AuthContext.Provider>
   )
