@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from '../components/navbar/navbar.component'
 import ProtectedRoute from '../components/protected.component'
+import Default from '../layout/default'
 
 import Home from '../pages/home/home'
 import Signin from '../pages/signin/signin'
@@ -20,7 +22,9 @@ const Router = () => {
 
         <Route element={<ProtectedRoute />} >
 
-          <Route path='/home' element={<Home />} />
+          <Route element={<Default />}>
+            <Route path='/home' element={<Home />} />
+          </Route>
 
         </Route>
 
