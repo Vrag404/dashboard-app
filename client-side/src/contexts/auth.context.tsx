@@ -7,7 +7,7 @@ export const AuthContext = createContext<IAuthContextTypes>({} as IAuthContextTy
 
 export const AuthProvider = ({ children }: IAuthContextProps) => {
   const [passwdConfirmation, setPasswdConfirmation] = useState('');
-  const [signed, setSigned] = useState(false);
+  const [signed, setSigned] = useState<boolean>(false);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
