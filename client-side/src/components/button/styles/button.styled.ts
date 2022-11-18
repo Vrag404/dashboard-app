@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
   width: 100%;
-  background: radial-gradient( #0475B5 0%, #0189AB 100%);
+  background: #223745;
   color: white;
   font-weight: 600;
   font-size: 15px;
