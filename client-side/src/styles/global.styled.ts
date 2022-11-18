@@ -8,10 +8,11 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(37deg, #ACE0EC 0%, #046EE5 100%);
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+    background: #ECEBE2;
   }
 `
 
