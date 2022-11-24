@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { IContact } from "../types/contact.interfaces";
-import { retrieveToken } from "../utils/emailValidate";
+import { retrieveToken } from "../utils/utils";
 import api from "./api.service";
 
 const API_URL: string = import.meta.env.VITE_API_URL as string;
