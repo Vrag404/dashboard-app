@@ -77,3 +77,11 @@ export const NavbarExtendedContainer = styled.div`
     display: none;
   }
 `;
+
+export const IconsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+`
