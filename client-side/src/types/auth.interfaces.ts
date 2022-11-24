@@ -22,6 +22,7 @@ export interface IAuthContextTypes {
   handleEmail: (event: React.FormEvent<HTMLInputElement>) => void,
 
   setError: (newState: string) => any,
+  checkLocalToken: (newState: boolean) => void,
 
   password: string,
   email: string, 
