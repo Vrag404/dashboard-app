@@ -38,12 +38,14 @@ export const AuthProvider = ({ children }: IAuthContextProps) => {
   const checkLocalToken = () => {
     const hasToken = localStorage.getItem('auth-token');
 
-    if (hasToken) setSigned(true); 
+    if (hasToken) {
+      setSigned(true)
+    } 
   }
 
   const provide: IAuthContextTypes = { handleUsername, handleEmail, handlePassword, 
     handlePasswdConfirmation, password, email, username, passwdConfirmation, 
-    error, setError
+    error, setError, checkLocalToken
   }
 
   return (
