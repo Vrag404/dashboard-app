@@ -11,4 +11,9 @@ export const FooterContainer = styled.footer`
   width: 100%;
   bottom: 0;
   position: fixed;
+
+  a {
+    color: #f9f9f9;
+    text-decoration: none;
+  }
 `;
