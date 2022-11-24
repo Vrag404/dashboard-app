@@ -24,3 +24,17 @@ export const createContact = async ({ name, email, phone }: IContact) => {
 export const getContacts = async () => {
   return await api.get(API_URL + 'getContacts', config);
 }
+
+export const deleteContact = async (_id: string) => {
+  return await api.delete(API_URL + `deleteContact/${_id}`, config)
+}
+
+export const updateContact = async ({ name, email, phone, _id }: IContact) => {
+  const data = {
+    name,
+    email, 
+    phone
+  }
+
+  return await api.put(API_URL + `updateContact/${_id}`, data)
+}
