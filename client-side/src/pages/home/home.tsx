@@ -15,7 +15,7 @@ import {
 } from "./styles/home.styled";
 
 import { IContactFetch } from "../../types/contact.interfaces";
-import { retrieveToken } from "../../utils/emailValidate";
+import { retrieveToken } from "../../utils/utils";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { BiRefresh } from "react-icons/bi";
 import { useEffect, useState } from "react";
