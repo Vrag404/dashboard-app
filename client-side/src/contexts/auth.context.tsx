@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
 import { IAuthContextProps, IAuthContextTypes } from '../types/auth.interfaces';
-import { isValidEmail } from '../utils/emailValidate';
+import { isValidEmail } from '../utils/utils';
 
 export const AuthContext = createContext<IAuthContextTypes>({} as IAuthContextTypes);
 
