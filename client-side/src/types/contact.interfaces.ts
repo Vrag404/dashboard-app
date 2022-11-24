@@ -2,6 +2,7 @@ export interface IContact {
   name: string,
   email: string,
   phone: string,
+  _id?: string,
 }
 
 export interface IContactFetch {
