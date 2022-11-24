@@ -3,7 +3,7 @@ import { FooterContainer } from "./styles/footer.styled"
 const Footer = () => {
   return (
     <FooterContainer>
-      Footer
+      Made by <a href="https://www.linkedin.com/in/diegohoc/">Vrag</a>
     </FooterContainer>
   )
 }
