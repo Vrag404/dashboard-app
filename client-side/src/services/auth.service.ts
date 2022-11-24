@@ -20,7 +20,3 @@ export const signup = async ({ username, email, password }: ISignup) => {
       password: password,
     });
 }
-
-export const logout = () => {
-  localStorage.removeItem("auth-token");
-};
