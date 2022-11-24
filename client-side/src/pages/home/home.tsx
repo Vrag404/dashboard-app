@@ -17,8 +17,8 @@ import {
 import { IContactFetch } from "../../types/contact.interfaces";
 import { retrieveToken } from "../../utils/utils";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import { BiRefresh } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import { BiRefresh } from "react-icons/bi";
 
 import * as ContactService from "../../services/contact.service";
 import * as Styled from "../../styles/base-components";
@@ -49,6 +49,14 @@ const Home = () => {
     return await ContactService.createContact({ name, email, phone })
   }
 
+  const handleDelete = async (_id: string) => {
+    return await ContactService.deleteContact(_id)
+  }
+
+  const handleEdit = async () => {
+    // return await ContactService.updateContact({ name, email, phone });
+  }
+
   const fetchData = async () => {
     const API_URL: string = import.meta.env.VITE_API_URL as string;
 
@@ -65,7 +73,7 @@ const Home = () => {
    }
 
   useEffect(() => {
-  //  fetchData()
+   fetchData()
   }, []);
 
   console.log(data)
@@ -85,6 +93,7 @@ const Home = () => {
 
             <Input
               name="name"
+              value={name}
               onChange={handleName}
             />
           </InputWrapper>
@@ -93,6 +102,7 @@ const Home = () => {
             <Label>Email</Label>
 
             <Input
+              value={email}
               name="email"
               onChange={handleEmail}
             />
@@ -103,6 +113,7 @@ const Home = () => {
 
             <Input
               name="phone"
+              value={phone}
               onChange={handlePhone}
             />
           </InputWrapper>
@@ -143,13 +154,13 @@ const Home = () => {
 
                   <Td alignCenter width="5%">
                     <TdIcon>
-                      <FaEdit />
+                      <FaEdit onClick={() => {}} />
                     </TdIcon>
                   </Td>
 
                   <Td alignCenter width="5%">
                     <TdIcon>
-                      <FaTrash />
+                      <FaTrash onClick={() => handleDelete(contact._id)} />
                     </TdIcon>
                   </Td>
 
