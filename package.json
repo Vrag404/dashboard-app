@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build:client-side": "yarn workspace client-side build",
     "dev": "concurrently \"yarn workspace client-side dev\" \"yarn workspace server-side dev\""
   },
   "devDependencies": {
