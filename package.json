@@ -7,12 +7,10 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "client-side",
-    "server-side"
+    "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace client-side build",
-    "start": "concurrently \"yarn workspace client-side dev\" \"yarn workspace server-side dev\""
+    "dev": "concurrently \"yarn workspace client-side dev\" \"yarn workspace server-side dev\""
   },
   "devDependencies": {
     "concurrently": "^7.6.0"

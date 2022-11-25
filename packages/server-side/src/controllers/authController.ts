@@ -1,4 +1,4 @@
-import { signupValidation, signinValidation } from './../middlewares/joi';
+import { signupValidation, signinValidation } from '../middlewares/joi';
 import { Request, Response } from 'express';
 import User, { IUser } from '../models/User';
 

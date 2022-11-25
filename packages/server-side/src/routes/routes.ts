@@ -2,7 +2,7 @@ import {
   deleteContact,
   getSingleContact,
   updateContact 
-} from './../controllers/contactController';
+} from '../controllers/contactController';
 
 import { Router } from "express";
 

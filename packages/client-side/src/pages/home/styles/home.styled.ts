@@ -1,4 +1,4 @@
-import { IStylesProps } from './../../../types/styles.interfaces';
+import { IStylesProps } from '../../../types/styles.interfaces';
 import styled from "styled-components";
 
 export const FormContainer = styled.form`
