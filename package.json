@@ -1,0 +1,20 @@
+{
+  "name": "dashboard-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Vrag404/dashboard-app.git",
+  "author": "Vrag404 <vrag404@protonmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client-side",
+    "server-side"
+  ],
+  "scripts": {
+    "build": "yarn workspace client-side build",
+    "start": "concurrently \"yarn workspace client-side dev\" \"yarn workspace server-side dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
