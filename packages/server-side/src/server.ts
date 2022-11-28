@@ -8,7 +8,7 @@ const PORT: string = (process.env.PORT as string);
 
 const server: Application = express();
 
-server.set('port', 3005 || PORT);
+server.set('port', PORT || 3015);
 
 server.use(express.json());
 server.use(morgan('dev'));
