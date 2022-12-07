@@ -13,13 +13,13 @@ export const signup = async (req: Request, res: Response) => {
     const { error } = signupValidation(req.body);
 
     if (error) {
-        return res.status(401).json(error.message);
+        return res.status(401).send(error.message);
     }
 
     const emailExists = await User.findOne({ email: req.body.email });
 
     if (emailExists) {
-        return res.status(401).json('Email already exists');
+        return res.status(401).send('Email already exists');
     }
 
     try {
@@ -37,9 +37,9 @@ export const signup = async (req: Request, res: Response) => {
             expiresIn: 60 * 60 * 24,
         });
 
-        res.header('auth-token', token).json(savedUser);
+        res.header('auth-token', token).send(savedUser);
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).send(err);
     }
 }
 
